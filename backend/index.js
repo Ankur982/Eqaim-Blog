@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const dbConnect = require("./dbConnect");
-
+const blogRoutes = require("./routes/blog")
 const cors = require("cors");
 
 
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-
+app.use("/api",blogRoutes)
 
 
 app.listen( process.env.PORT || 8080,() =>{ 
