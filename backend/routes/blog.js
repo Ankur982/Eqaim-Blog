@@ -3,7 +3,9 @@ const multer = require("multer");
 const fs = require("fs")
 const Blog = require("../models/Blog");
 const { Server } = require("http");
+const express = require('express');
 
+router.use(express.static(__dirname+"./uploads")) 
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -18,15 +20,12 @@ const upload = multer({ storage: storage });
 
 
 
-router.post('/blog', upload.single("img"), async(req, res) => {
+router.post('/blog', upload.single("file"), async(req, res) => {
     try {
         const newBlog = new Blog({
             title: req.body.title,
             summary: req.body.summary,
-            image: {
-                data: fs.readFileSync("uploads/" + req.file.filename),
-                contentType: "image/png",
-            },
+            image: req.file.filename
         });
         await newBlog.save();
         res.status(200).send(newBlog);
