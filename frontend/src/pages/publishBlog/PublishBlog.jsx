@@ -2,14 +2,40 @@ import React from "react";
 import { Box, Image, Input, Text, Textarea } from "@chakra-ui/react";
 import home from "../../utils/home.svg";
 import post from "../../utils/post.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { postBlogs } from "../../redux/action";
+import { useNavigate } from "react-router-dom";
+
 export const PublishBlog = () => {
   let [title, setTitle] = React.useState("");
   let [summary, setSummary] = React.useState("");
   let [image, setImage] = React.useState("");
-console.log("fasdbf",image)
+  const dispatch = useDispatch();
+  const navigate  = useNavigate();
+  const initPost = {
+    title: title,
+    summary: summary,
+    image: image,
+  };
+
+  const handlePost = async () => {
+    if(!title || !summary){
+      alert("please field input")
+      return
+    }
+    
+    dispatch(postBlogs(initPost));
+  };
+
   return (
     <Box display={"flex"} w={"90%"} m={"auto"} mt={"30px"}>
-      <Box display={"flex"} flexDirection={"column"} gap={"30px"} position={"absolute"} top={"30%"}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        gap={"30px"}
+        position={"absolute"}
+        top={"30%"}
+      >
         <Box
           width={"80px"}
           height={"70px"}
@@ -19,6 +45,9 @@ console.log("fasdbf",image)
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
+          onClick={()=>{
+            navigate("/")
+          }}
         >
           <Image w={"80px"} h={"52px"} src={home} />
         </Box>
@@ -31,6 +60,7 @@ console.log("fasdbf",image)
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
+          onClick={handlePost}
         >
           <Image w={"70px"} h={"52px"} src={post} />
         </Box>
@@ -47,7 +77,7 @@ console.log("fasdbf",image)
           color={"#767676"}
           mt={"20px"}
         >
-          <Input
+          <Textarea
             value={title}
             placeholder="Enter Title...."
             fontWeight={"600"}
@@ -58,19 +88,27 @@ console.log("fasdbf",image)
               setTitle(e.target.value);
             }}
           />
-          <Input type="file" multiple={false} mt={"20px"}  onChange={({ e }) => setImage( e)}/>
+          <Input
+            type="text"
+            placeholder="Enter url...."
+            fontWeight={"300"}
+            fontSize={"40px"}
+            lineHeight={"48px"}
+            value={image}
+            mt={"20px"}
+            onChange={(e) => setImage(e.target.value)}
+          />
           <Textarea
             fontWeight={"300"}
             fontSize={"40px"}
             lineHeight={"48px"}
             value={summary}
-            name={"file"}
             onChange={(e) => {
               setSummary(e.target.value);
             }}
             h={"50%"}
             mt={"20px"}
-            placeholder="Ener content...."
+            placeholder="Enter content...."
           />
         </Box>
       </Box>

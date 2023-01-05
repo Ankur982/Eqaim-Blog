@@ -5,36 +5,20 @@ const Blog = require("../models/Blog");
 const { Server } = require("http");
 const express = require('express');
 
-router.use(express.static(__dirname+"./uploads")) 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads");
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    },
-});
-
-const upload = multer({ storage: storage });
-
-
-
-router.post('/blog', upload.single("file"), async(req, res) => {
+router.post('/blog', async(req, res) => {
+    console.log(req.body)
     try {
         const newBlog = new Blog({
             title: req.body.title,
             summary: req.body.summary,
-            image: req.file.filename
+            image: req.body.image
         });
         await newBlog.save();
         res.status(200).send(newBlog);
     } catch (err) {
         res.status(500).json('Server Error....!');
     }
-
-
-
 });
 
 
@@ -47,6 +31,17 @@ router.get("/blog", async (req, res) => {
         res.status(404).send(e);
     }
 });
+
+
+router.get("/blog/:id", async (req, res) => {
+    try {
+      const blog = await Blog.findById(req.params.id);
+      res.status(200).send(blog);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+  
 
 
 

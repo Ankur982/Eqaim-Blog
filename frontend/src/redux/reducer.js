@@ -1,7 +1,13 @@
-import { GET_BLOGS } from "./actionType"
+import { GET_BLOGS, GET_BLOGS_BY_ID, POST_BLOGS } from "./actionType"
 
 const initState = {
     blogs: [],
+    addedBlog: {
+
+    },
+    currentBlog: {
+
+    }
 }
 
 export const Reducer = (state = initState, { type, payload }) => {
@@ -12,6 +18,17 @@ export const Reducer = (state = initState, { type, payload }) => {
                 blogs: payload
             }
 
+            case POST_BLOGS:
+                return {
+                    ...state,
+                    addedBlog: payload
+                }
+
+                case GET_BLOGS_BY_ID:
+                    return {
+                        ...state,
+                        currentBlog: payload
+                    }   
            
         default: return state
     }
