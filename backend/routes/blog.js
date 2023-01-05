@@ -6,7 +6,7 @@ const { Server } = require("http");
 const express = require('express');
 
 
-router.post('/blog', async(req, res) => {
+router.post('/blog', async (req, res) => {
     console.log(req.body)
     try {
         const newBlog = new Blog({
@@ -25,7 +25,7 @@ router.post('/blog', async(req, res) => {
 
 router.get("/blog", async (req, res) => {
     try {
-        const blogs = await Blog.find(); 
+        const blogs = await Blog.find();
         res.status(200).send(blogs);
     } catch (e) {
         res.status(404).send(e);
@@ -35,13 +35,13 @@ router.get("/blog", async (req, res) => {
 
 router.get("/blog/:id", async (req, res) => {
     try {
-      const blog = await Blog.findById(req.params.id);
-      res.status(200).send(blog);
+        const blog = await Blog.findById(req.params.id);
+        res.status(200).send(blog);
     } catch (err) {
-      res.status(500).send(err);
+        res.status(500).send(err);
     }
-  });
-  
+});
+
 
 
 

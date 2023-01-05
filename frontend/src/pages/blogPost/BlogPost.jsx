@@ -1,12 +1,11 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import home from "../../utils/home.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export const BlogPost = () => {
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const currentBlog = useSelector((store) => store.currentBlog);
-  
 
   return (
     <Box display={"flex"} w={"90%"} m={"auto"} mt={"30px"}>
@@ -21,10 +20,13 @@ export const BlogPost = () => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Image w={"80px"} h={"52px"} src={home} 
-          onClick={()=>{
-            navigate("/")
-          }}
+          <Image
+            w={"80px"}
+            h={"52px"}
+            src={home}
+            onClick={() => {
+              navigate("/");
+            }}
           />
         </Box>
       </Box>
@@ -45,9 +47,17 @@ export const BlogPost = () => {
             lineHeight={"48px"}
             mt={"20px"}
           >
-            {currentBlog.title}
+            Title: {"  "} {currentBlog.title}
           </Text>
-          <Image src={currentBlog.image} mt={"20px"} w={"500px"} display={"block"} m={"auto"}  borderRadius={"25px"} boxShadow={"lg"}/>
+          <Image
+            src={currentBlog.image}
+            mt={"20px"}
+            w={"500px"}
+            display={"block"}
+            m={"auto"}
+            borderRadius={"25px"}
+            boxShadow={"lg"}
+          />
           <Text
             type="text"
             fontWeight={"300"}
@@ -55,8 +65,9 @@ export const BlogPost = () => {
             lineHeight={"48px"}
             mt={"20px"}
           >
-            {currentBlog.summary}
+            Summary: {"  "} {currentBlog.summary}
           </Text>
+          <Text>Posted Date: {"  "}{currentBlog.date}</Text>
         </Box>
       </Box>
     </Box>

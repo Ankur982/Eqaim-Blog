@@ -2,7 +2,7 @@
 import axios from "axios";
 import { GET_BLOGS, GET_BLOGS_BY_ID, POST_BLOGS } from "./actionType";
 
-export const getBlogs = () => async(dispatch) => {
+export const getBlogs = () => async (dispatch) => {
     let { data } = await axios.get('http://localhost:8080/api/blog');
     console.log(data)
     dispatch({
@@ -13,9 +13,9 @@ export const getBlogs = () => async(dispatch) => {
 
 
 
-export const postBlogs = (newBlog) => async(dispatch) => {
+export const postBlogs = (newBlog) => async (dispatch) => {
     console.log(newBlog)
-    let { data } = await axios.post('http://localhost:8080/api/blog',newBlog);
+    let { data } = await axios.post('http://localhost:8080/api/blog', newBlog);
     alert("Post Added Successfully....!")
     dispatch({
         type: POST_BLOGS,
@@ -23,8 +23,8 @@ export const postBlogs = (newBlog) => async(dispatch) => {
     });
 }
 
-export const getBlogById = (id) => async(dispatch) => {
-    
+export const getBlogById = (id) => async (dispatch) => {
+
     let { data } = await axios.get(`http://localhost:8080/api/blog/${id}`);
     dispatch({
         type: GET_BLOGS_BY_ID,

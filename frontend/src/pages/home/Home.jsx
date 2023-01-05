@@ -7,23 +7,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export const Home = () => {
   const dispatch = useDispatch();
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const blogs = useSelector((store) => store.blogs);
   const reversedBlogs = [...blogs].reverse();
 
-  useEffect(()=>{
-    dispatch(getBlogs())
-  },[])
-
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, []);
 
   return (
     <Box m="auto" position={"relative"}>
       <SimpleGrid columns={[1, 2, 3]} w="90%" m="auto">
-        {
-           reversedBlogs.map((el, i) => (
-          <BlogTitleCard key={i} blog={el}/>
-        ))
-        }
+        {reversedBlogs.map((el, i) => (
+          <BlogTitleCard key={i} blog={el} />
+        ))}
       </SimpleGrid>
       <Box
         position={"absolute"}
@@ -37,9 +34,14 @@ export const Home = () => {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Image w={"40px"} h={"52px"} src={createBlog} onClick={()=>{
-          navigate("/addBlog")
-        }}/>
+        <Image
+          w={"40px"}
+          h={"52px"}
+          src={createBlog}
+          onClick={() => {
+            navigate("/addBlog");
+          }}
+        />
       </Box>
     </Box>
   );

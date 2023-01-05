@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.use("/api",blogRoutes)
+app.use("/api", blogRoutes)
 
 
-app.listen( process.env.PORT || 8080,() =>{ 
-    console.log('Server Started On Port 8080') 
+app.listen(process.env.PORT || 8080, () => {
+    console.log('Server Started On Port 8080')
 });

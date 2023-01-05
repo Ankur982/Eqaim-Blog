@@ -11,7 +11,7 @@ export const PublishBlog = () => {
   let [summary, setSummary] = React.useState("");
   let [image, setImage] = React.useState("");
   const dispatch = useDispatch();
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const initPost = {
     title: title,
     summary: summary,
@@ -19,11 +19,11 @@ export const PublishBlog = () => {
   };
 
   const handlePost = async () => {
-    if(!title || !summary){
-      alert("please field input")
-      return
+    if (!title || !summary) {
+      alert("please field input");
+      return;
     }
-    
+
     dispatch(postBlogs(initPost));
   };
 
@@ -45,8 +45,8 @@ export const PublishBlog = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          onClick={()=>{
-            navigate("/")
+          onClick={() => {
+            navigate("/");
           }}
         >
           <Image w={"80px"} h={"52px"} src={home} />

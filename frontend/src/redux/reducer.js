@@ -18,18 +18,18 @@ export const Reducer = (state = initState, { type, payload }) => {
                 blogs: payload
             }
 
-            case POST_BLOGS:
-                return {
-                    ...state,
-                    addedBlog: payload
-                }
+        case POST_BLOGS:
+            return {
+                ...state,
+                addedBlog: payload
+            }
 
-                case GET_BLOGS_BY_ID:
-                    return {
-                        ...state,
-                        currentBlog: payload
-                    }   
-           
+        case GET_BLOGS_BY_ID:
+            return {
+                ...state,
+                currentBlog: payload
+            }
+
         default: return state
     }
 }

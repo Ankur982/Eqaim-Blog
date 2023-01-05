@@ -3,13 +3,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getBlogById } from "../../redux/action";
-export const BlogTitleCard = ({blog}) => {
+export const BlogTitleCard = ({ blog }) => {
   const dispatch = useDispatch();
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const handleBlog = (id) => {
-    dispatch(getBlogById(id))
-    navigate("/blogs/:id")
-  }
+    dispatch(getBlogById(id));
+    navigate("/blogs/:id");
+  };
 
   return (
     <Box
@@ -22,7 +22,7 @@ export const BlogTitleCard = ({blog}) => {
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
-      onClick={(()=>handleBlog(blog._id))}
+      onClick={() => handleBlog(blog._id)}
     >
       <Text
         fontFamily={"Inter"}
