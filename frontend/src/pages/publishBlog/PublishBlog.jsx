@@ -49,7 +49,7 @@ console.log("fasdbf",image)
         >
           <Input
             value={title}
-            placeholder="Enter Title"
+            placeholder="Enter Title...."
             fontWeight={"600"}
             fontSize={"40px"}
             lineHeight={"48px"}
@@ -68,8 +68,9 @@ console.log("fasdbf",image)
             onChange={(e) => {
               setSummary(e.target.value);
             }}
+            h={"50%"}
             mt={"20px"}
-            placeholder="Ener content"
+            placeholder="Ener content...."
           />
         </Box>
       </Box>
